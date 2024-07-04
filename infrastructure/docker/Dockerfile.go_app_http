@@ -1,0 +1,13 @@
+FROM golang:1.21
+
+WORKDIR /service-hf-payment-p5/src/app
+
+COPY . .
+
+ENV GOPATH=/service-hf-payment-p5
+
+RUN go build -ldflags "-w -s" -o bin/hermesfoods cmd/http/*.go
+
+ENTRYPOINT ["./bin/hermesfoods"]
+
+EXPOSE 8080
